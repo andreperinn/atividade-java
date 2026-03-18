@@ -30,9 +30,14 @@ public class LivroControler {
         return livroService.atualizar(id,livroModel);
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public void deletar (@PathVariable Long id){
         livroService.deletar(id);
+    }
+
+    @GetMapping("/{id}")
+    public void buscarId (@PathVariable Long id){
+        livroService.buscarId(id);
     }
 
 }
