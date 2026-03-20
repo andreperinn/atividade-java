@@ -1,4 +1,7 @@
 package com.ap.demo.repositories;
 
-public interface ProdutoRepository {
+import com.ap.demo.models.ProdutoModel;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ProdutoRepository extends JpaRepository <ProdutoModel, Long> {
 }
