@@ -23,8 +23,8 @@ public class ProdutoService {
     }
 
     public ProdutoModel buscarId (Long id){
-        produtoRepository.findById(id);
-        
+       return produtoRepository.findById(id).get();
+
     }
 
     public void deletar (Long id){
