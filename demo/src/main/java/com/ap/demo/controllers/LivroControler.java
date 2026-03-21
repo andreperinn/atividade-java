@@ -1,43 +1,46 @@
 package com.ap.demo.controllers;
 
-
-import com.ap.demo.models.LivroModel;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import org.springframework.web.util.UriComponentsBuilder;
+import com.ap.demo.models.LivroModel;
 import com.ap.demo.services.LivroService;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/livros")
+@RequestMapping(path="/livros")
 public class LivroControler {
 
     @Autowired
     private LivroService livroService;
 
-    @GetMapping
-    public List<LivroModel> findAll(){
-        return livroService.findAll();
-    }
-
     @PostMapping
-    public LivroModel criarLivro (@RequestBody LivroModel livroModel){
-        return livroService.criarLivro(livroModel);
+    public ResponseEntity<LivroModel> criarLivro(@RequestBody LivroModel livroModel) {
+        LivroModel request = livroService.criarLivro(livroModel);
+        URI uri =  ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(request.getId()).toUri();
+        return ResponseEntity.created(uri).body(request);
     }
 
-    @PutMapping("/{id}")
-    public  LivroModel atualizar (@PathVariable Long id, @RequestBody LivroModel livroModel){
-        return livroService.atualizar(id,livroModel);
+    @GetMapping
+    public ResponseEntity<List<LivroModel>> listarLivros() {
+        List<LivroModel> request = livroService.listarLivros();
+        return ResponseEntity.ok().body(request);
     }
 
-    @DeleteMapping("/{id}")
-    public void deletar (@PathVariable Long id){
-        livroService.deletar(id);
+    @GetMapping(path="/{id}")
+    public ResponseEntity<LivroModel> buscarLivroPorId(@PathVariable Long id) {
+        LivroModel request = livroService.buscarLivroPorId(id);
+        return ResponseEntity.ok().body(request);
     }
 
-    @GetMapping("/{id}")
-    public void buscarId (@PathVariable Long id){
-        livroService.buscarId(id);
+    @DeleteMapping(path = "/{id}")
+    public ResponseEntity<Void> deletarLivroPorId(@PathVariable Long id) {
+        livroService.deletarLivroPorId(id);
+        return ResponseEntity.noContent().build();
     }
 
 }

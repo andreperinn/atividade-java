@@ -1,8 +1,8 @@
 package com.ap.demo.services;
 
-import com.ap.demo.models.LivroModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.ap.demo.models.LivroModel;
 import com.ap.demo.repositories.LivroRepository;
 
 import java.util.List;
@@ -13,27 +13,20 @@ public class LivroService {
     @Autowired
     private LivroRepository livroRepository;
 
-    public LivroModel criarLivro(LivroModel livroModel){
+    public LivroModel criarLivro(LivroModel livroModel) {
         return livroRepository.save(livroModel);
     }
 
-    public List <LivroModel> findAll(){
+    public List<LivroModel> listarLivros() {
         return livroRepository.findAll();
     }
 
-    public LivroModel atualizar(Long id, LivroModel livroModel){
-        LivroModel model = livroRepository.findById(id).get();
-        model.setTitulo(livroModel.getTitulo());
-        return livroRepository.save(model);
+    public LivroModel buscarLivroPorId(Long id) {
+        return livroRepository.findById(id).get();
     }
 
-    public void deletar(Long id){
+    public void deletarLivroPorId(Long id) {
         livroRepository.deleteById(id);
     }
-
-    public void buscarId(Long id){
-        livroRepository.findById(id);
-    }
-
 
 }

@@ -3,16 +3,19 @@ package com.ap.demo.models;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "TBL_LIVROS")
+@Table(name="tb_livro")
 public class LivroModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id ;
-    private String titulo;
-    private String autor;
-    private Integer anoPublicacao;
+    private Long id;
 
+    @Column(name="tituloLivro")
+    private String titulo;
+    @Column(name="autorLivro")
+    private String autor;
+    @Column(name="anoPublicacaoLivro")
+    private int anoPublicacao;
 
     public LivroModel() {
     }
@@ -41,11 +44,11 @@ public class LivroModel {
         this.autor = autor;
     }
 
-    public Integer getAnoPublicacao() {
+    public int getAnoPublicacao() {
         return anoPublicacao;
     }
 
-    public void setAnoPublicacao(Integer anoPublicacao) {
+    public void setAnoPublicacao(int anoPublicacao) {
         this.anoPublicacao = anoPublicacao;
     }
 }
