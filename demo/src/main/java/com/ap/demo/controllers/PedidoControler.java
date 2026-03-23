@@ -27,7 +27,6 @@ public class PedidoControler {
     }
 
     @GetMapping
-
     public ResponseEntity<List<PedidoModel>> listarPedidos() {
         List<PedidoModel> request = pedidoService.listarPedidos();
         return ResponseEntity.ok().body(request);

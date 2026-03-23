@@ -18,7 +18,7 @@ public class ProdutoService {
         return produtoRepository.save(produtoModel);
     }
 
-    public List <ProdutoModel> findAll (){
+    public List <ProdutoModel> listarProduto(){
         return produtoRepository.findAll();
     }
 
@@ -27,7 +27,7 @@ public class ProdutoService {
 
     }
 
-    public void deletar (Long id){
+    public void deletarId (Long id){
         produtoRepository.deleteById(id);
     }
 }

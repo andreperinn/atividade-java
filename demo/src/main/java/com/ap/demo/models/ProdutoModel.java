@@ -13,8 +13,11 @@ public class ProdutoModel {
     @GeneratedValue (strategy = GenerationType.IDENTITY)
 
     private Long id;
+    @Column(name = "nome_pedido")
     private String nome;
+    @Column(name = "preco_pedido")
     private BigDecimal preco;
+    @Column(name = "estoque_pedido")
     private Integer estoque;
 
     public ProdutoModel() {

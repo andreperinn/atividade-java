@@ -10,8 +10,11 @@ public class FornecedorModel {
     @GeneratedValue (strategy = GenerationType.IDENTITY)
 
     private Long id ;
+    @Column(name = "nome_fornecedor")
     private String nomeFantasia;
+    @Column(name = "ncnpj_fornecedor")
     private String cnpj;
+    @Column(name = "contato_fornecedor")
     private String contato;
 
 
