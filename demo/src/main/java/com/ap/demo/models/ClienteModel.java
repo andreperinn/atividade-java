@@ -3,6 +3,7 @@ package com.ap.demo.models;
 import jakarta.persistence.*;
 
 @Entity
+@Table (name = "TBL_CLIENTE")
 public class ClienteModel {
 
     @Id
